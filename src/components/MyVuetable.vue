@@ -15,18 +15,24 @@ export default {
   data () {
     return {
       fields: [
-        'name', 'email', 'birthdate',
+        'name', 'email',
         {
-          name: 'address.line1',
-          title: 'Address 1'
+          name: 'birthdate',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
         },
         {
-          name: 'address.line2',
-          title: 'Address 2'
+          name: 'nickname',
         },
         {
-          name: 'address.zipcode',
-          title: 'Zipcode'
+          name: 'gender',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
+        },
+        {
+          name: 'salary',
+          titleClass: 'center aligned',
+          dataClass: 'right aligned'
         }
       ]
     }
