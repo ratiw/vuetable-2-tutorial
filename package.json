@@ -9,6 +9,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "accounting": "^0.4.1",
+    "moment": "^2.17.1",
     "vue": "^2.1.0",
     "vuetable-2": "^1.0.1"
   },
