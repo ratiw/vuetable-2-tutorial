@@ -6,7 +6,9 @@
       pagination-path=""
       @vuetable:pagination-data="onPaginationData"
     ></vuetable>
-    <vuetable-pagination ref="pagination"></vuetable-pagination>
+    <vuetable-pagination ref="pagination"
+      @vuetable-pagination:change-page="onChangePage"
+    ></vuetable-pagination>
   </div>
 </template>
 
@@ -69,6 +71,9 @@ export default {
     },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
+    },
+    onChangePage (page) {
+      this.$refs.vuetable.changePage(page)
     }
   }
 }
