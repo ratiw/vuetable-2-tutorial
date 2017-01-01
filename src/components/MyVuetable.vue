@@ -49,6 +49,11 @@ export default {
           sortField: 'email'
         },
         {
+          name: 'age',
+          sortField: 'birthdate',
+          dataClass: 'center aligned'
+        },
+        {
           name: 'birthdate',
           sortField: 'birthdate',
           titleClass: 'center aligned',
