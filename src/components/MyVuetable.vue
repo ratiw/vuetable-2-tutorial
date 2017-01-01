@@ -12,6 +12,7 @@
       :fields="fields"
       pagination-path=""
       :per-page="20"
+      :sort-order="sortOrder"
       @vuetable:pagination-data="onPaginationData"
     ></vuetable>
     <div class="vuetable-pagination ui basic segment grid">
@@ -78,6 +79,13 @@ export default {
           titleClass: 'center aligned',
           dataClass: 'right aligned',
           callback: 'formatNumber'
+        }
+      ],
+      sortOrder: [
+        {
+          field: 'email',
+          sortField: 'email',
+          direction: 'asc'
         }
       ]
     }
