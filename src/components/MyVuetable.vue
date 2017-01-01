@@ -52,6 +52,7 @@ export default {
         {
           name: 'age',
           sortField: 'birthdate',
+          titleClass: 'center aligned',
           dataClass: 'center aligned'
         },
         {
