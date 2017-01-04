@@ -42,6 +42,12 @@ export default {
     return {
       fields: [
         {
+          name: '__sequence',
+          title: '#',
+          titleClass: 'center aligned',
+          dataClass: 'right aligned'
+        },
+        {
           name: 'name',
           sortField: 'name'
         },
