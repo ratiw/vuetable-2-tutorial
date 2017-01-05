@@ -13,7 +13,10 @@
       pagination-path=""
       :per-page="20"
       :sort-order="sortOrder"
+      detail-row-component="my-detail-row"
+      detail-row-id="id"
       @vuetable:pagination-data="onPaginationData"
+      @vuetable:cell-clicked="onCellClicked"
     ></vuetable>
     <div class="vuetable-pagination ui basic segment grid">
       <vuetable-pagination-info ref="paginationInfo"
@@ -33,8 +36,10 @@ import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
 import Vue from 'vue'
 import CustomActions from './CustomActions'
+import DetailRow from './DetailRow'
 
 Vue.component('custom-actions', CustomActions)
+Vue.component('my-detail-row', DetailRow)
 
 export default {
   components: {
@@ -138,6 +143,10 @@ export default {
     },
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
+    },
+    onCellClicked (data, field, event) {
+      console.log('cellClicked: ', field.name)
+      this.$refs.vuetable.toggleDetailRow(data.id)
     }
   }
 }
