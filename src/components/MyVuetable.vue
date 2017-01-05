@@ -31,6 +31,10 @@ import moment from 'moment'
 import Vuetable from 'vuetable-2/src/components/Vuetable'
 import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
+import Vue from 'vue'
+import CustomActions from './CustomActions'
+
+Vue.component('custom-actions', CustomActions)
 
 export default {
   components: {
@@ -46,6 +50,11 @@ export default {
           title: '#',
           titleClass: 'center aligned',
           dataClass: 'right aligned'
+        },
+        {
+          name: '__checkbox:id',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
         },
         {
           name: 'name',
@@ -86,6 +95,12 @@ export default {
           titleClass: 'center aligned',
           dataClass: 'right aligned',
           callback: 'formatNumber'
+        },
+        {
+          name: '__component:custom-actions',
+          title: 'Actions',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
         }
       ],
       sortOrder: [
