@@ -12,7 +12,8 @@
     "accounting": "^0.4.1",
     "moment": "^2.17.1",
     "vue": "^2.1.0",
-    "vuetable-2": "^1.0.1"
+    "vue-events": "vue-2.x",
+    "vuetable-2": "https://github.com/ratiw/vuetable-2#develop"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

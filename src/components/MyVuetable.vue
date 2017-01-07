@@ -14,7 +14,6 @@
       :per-page="20"
       :sort-order="sortOrder"
       detail-row-component="my-detail-row"
-      detail-row-id="id"
       @vuetable:pagination-data="onPaginationData"
       @vuetable:cell-clicked="onCellClicked"
     ></vuetable>
@@ -57,7 +56,7 @@ export default {
           dataClass: 'right aligned'
         },
         {
-          name: '__checkbox:id',
+          name: '__checkbox',
           titleClass: 'center aligned',
           dataClass: 'center aligned'
         },
