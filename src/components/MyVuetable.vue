@@ -1,5 +1,6 @@
 <template>
   <div class="ui container">
+    <filter-bar></filter-bar>
     <div class="vuetable-pagination ui basic segment grid">
       <vuetable-pagination-info ref="paginationInfoTop"
       ></vuetable-pagination-info>
@@ -36,9 +37,11 @@ import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePagination
 import Vue from 'vue'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
+import FilterBar from './FilterBar'
 
 Vue.component('custom-actions', CustomActions)
 Vue.component('my-detail-row', DetailRow)
+Vue.component('filter-bar', FilterBar)
 
 export default {
   components: {
