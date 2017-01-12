@@ -148,14 +148,12 @@ export default {
   },
   events: {
     'filter-set' (filterText) {
-      console.log('filter-set', filterText)
       this.moreParams = {
         'filter': filterText
       }
       Vue.nextTick( () => this.$refs.vuetable.refresh())
     },
     'filter-reset' () {
-      console.log('filter-reset')
       this.moreParams = {}
       this.$refs.vuetable.refresh()
       Vue.nextTick( () => this.$refs.vuetable.refresh())

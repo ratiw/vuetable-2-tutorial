@@ -20,12 +20,10 @@ export default {
   },
   methods: {
     doFilter () {
-      console.log('do filter', this.filterText)
       this.$events.fire('filter-set', this.filterText)
     },
     resetFilter () {
       this.filterText = ''
-      console.log('reset filter')
       this.$events.fire('filter-reset')
     }
   }
