@@ -15,6 +15,7 @@
       :per-page="20"
       :sort-order="sortOrder"
       detail-row-component="my-detail-row"
+      :appendParams="moreParams"
       @vuetable:pagination-data="onPaginationData"
       @vuetable:cell-clicked="onCellClicked"
     ></vuetable>
@@ -34,10 +35,13 @@ import moment from 'moment'
 import Vuetable from 'vuetable-2/src/components/Vuetable'
 import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
-import Vue from 'vue'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from './FilterBar'
+
+import Vue from 'vue'
+import VueEvents from 'vue-events'
+Vue.use(VueEvents)
 
 Vue.component('custom-actions', CustomActions)
 Vue.component('my-detail-row', DetailRow)
@@ -116,7 +120,8 @@ export default {
           sortField: 'email',
           direction: 'asc'
         }
-      ]
+      ],
+      moreParams: {}
     }
   },
   methods: {
@@ -149,6 +154,21 @@ export default {
     onCellClicked (data, field, event) {
       console.log('cellClicked: ', field.name)
       this.$refs.vuetable.toggleDetailRow(data.id)
+    }
+  },
+  events: {
+    'filter-set' (filterText) {
+      console.log('filter-set', filterText)
+      this.moreParams = {
+        'filter': filterText
+      }
+      Vue.nextTick( () => this.$refs.vuetable.refresh())
+    },
+    'filter-reset' () {
+      console.log('filter-reset')
+      this.moreParams = {}
+      this.$refs.vuetable.refresh()
+      Vue.nextTick( () => this.$refs.vuetable.refresh())
     }
   }
 }
