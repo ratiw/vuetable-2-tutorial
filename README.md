@@ -10,10 +10,7 @@ Clone the project and install it using `npm` or `yarn`.
 # install dependencies
 npm install
 
-## Project Lessons
-
-Each lesson contains the code that is tagged according to the lesson itself.
-
+# each lesson contains the code that is tagged according to the lesson itself.
 # to select the code for lesson 1
 git checkout lesson-1
 
