@@ -35,6 +35,6 @@ Let's see how we can display those nested data
     ```
 
     You should now see the additional fields showing in our Vuetable
-    ![image](./images/02-1.PNG)
+    ![image](./images/02-1.png)
 
 [Source code for this lesson](https://github.com/ratiw/vuetable-2-tutorial/tree/lesson-2)
