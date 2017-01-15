@@ -205,4 +205,6 @@ Please note that you have to append the name of the component you registered wit
 
 Run the project, and you should now see the new component in the last column of the table. Clicking any button and you should see some output log to the browser's console.
 
+![image](./images/11-4.png)
+
 [Source code for this lesson](https://github.com/ratiw/vuetable-2-tutorial/tree/lesson-11)
