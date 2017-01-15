@@ -4,8 +4,8 @@ In this lesson, we will use `callback` option of Vuetable to format the followin
 
 * `nickname` -- display in all upppercase letters
 * `gender` -- display `Male` or `Female` as colored label with an icon
-* `salary` -- using [accounting.js]() to display the value with thousand separator
-* `birthdate` -- using [moment.js]() to display different date format
+* `salary` -- using [accounting.js](http://openexchangerates.github.io/accounting.js) to display the value with thousand separator
+* `birthdate` -- using [moment.js](https://momentjs.com/) to display different date format
 
 The `callback` option allows us to specify the callback function for a specific field to handle the value of the column data to be displayed. Vuetable will use the returned value of the callback to display the data in that column.
 
@@ -13,6 +13,8 @@ The `callback` option allows us to specify the callback function for a specific 
 Let's begin with displaying `nickname` in all upppercase.
 
 ```javascript
+  // MyVuetable.vue
+
   //...
   data () {
     return {
@@ -46,6 +48,8 @@ In this case, we only use the first parameter (`value`). We will see the use of 
 Now, we will make use of the CSS framework to format the gender field to display the icon label.
 
 ```javascript
+  // MyVuetable.vue
+
   //...
   data () {
     return {
@@ -71,7 +75,7 @@ Now, we will make use of the CSS framework to format the gender field to display
   }
 ```
 
-As you can see, returned value of the callback function can also be a valid HTML. So, you can freely use any CSS framework that you like to style it. 
+As you can see, returned value of the callback function can also be a valid HTML. So, you can freely use any CSS framework that you like to style it.
 
 Here is example of using Bootstrap 3:
 
@@ -92,12 +96,13 @@ First let's include the `accounting.js` using `yarn`
     $ yarn add accounting
 ```
 
-> We are using original accounting.js library, which is named `accounting`.
+> We are using original accounting.js library, which is named `accounting`. There are other similar packages, you can pick the one the you like.
 
 
 Now, we have to import it into MyVuetable before we can use it.
 ```javascript
   // MyVuetable.vue
+
   <script>
   import Vuetable from 'vuetable-2/src/components/Vuetable'
   import accounting from 'accounting'
@@ -111,6 +116,7 @@ Now, we have to import it into MyVuetable before we can use it.
 Add the `callback` option to `salary` field definition
 ```javascript
   // MyVuetable.vue
+
   data () {
     return {
       fields: [
@@ -130,6 +136,7 @@ Add the `callback` option to `salary` field definition
 Then, define `formatNumber` function in the `methods` block
 ```javascript
   // MyVuetable.vue
+
   //...
   methods: {
     //...
@@ -140,7 +147,7 @@ Then, define `formatNumber` function in the `methods` block
 ```
 
 ## `birthdate` field
-To format date, we will use [`momentjs`]() to do this.
+To format date, we will use [`momentjs`](https://momentjs.com/) to do this.
 
 We have to include `momentjs` library first using `yarn`
 ```shell
@@ -151,6 +158,7 @@ $ yarn add moment
 Let's import the `momentjs` to be use inside the MyVuetable.vue.
 ```javascript
   // MyVuetable.vue
+
   <script>
   import Vuetable from 'vuetable-2/src/components/Vuetable'
   import accounting from 'accounting'
@@ -165,6 +173,7 @@ Let's import the `momentjs` to be use inside the MyVuetable.vue.
 Add the `callback` option to `birthdate` fiel definition
 ```javascript
   // MyVuetable.vue
+
   data () {
     return {
       fields: [
@@ -184,6 +193,7 @@ Add the `callback` option to `birthdate` fiel definition
 And, define `formatDate` function in the `methods` block
 ```javascript
   // MyVuetable.vue
+
   //...
   methods: {
     //...

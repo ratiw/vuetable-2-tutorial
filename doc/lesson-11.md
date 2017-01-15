@@ -19,6 +19,7 @@ Let's add the sequence number to MyVuetable.
 
 ```javascript
   // MyVuetable.vue
+
   // ...
   data () {
     return {
@@ -37,6 +38,8 @@ Let's add the sequence number to MyVuetable.
 
 You should now see the sequence column appears on the left side of the table.
 
+![image](./images/11-1.png)
+
 ### __handle
 
 This one was created specifically because we need to make a handle icon for [Sortable.js](https://github.com/rubaxa/Sortable).
@@ -45,6 +48,7 @@ You can use `css.sortHandleIcon` to change the icon that suit your task.
 
 ```javascript
   // MyVuetable.vue
+
   // ...
   data () {
     return {
@@ -59,15 +63,18 @@ You can use `css.sortHandleIcon` to change the icon that suit your task.
   }
 ```
 
+![image](./images/11-2.png)
+
 ### __checkbox
 
 The `__checkbox` special field will display checkbox column for each row and also on the header row to allow select/unselect all functionality.
 
 In order for Vuetable to keep track of the checkbox state of each data row.
-By default, `__checkbox` will use `id` field for that purpose as it usually unique for each row. That also means your data will have to have `id` column. 
+By default, `__checkbox` will use `id` field for that purpose as it usually unique for each row. That also means your data will have to have `id` column.
 
 ```javascript
   // MyVuetable.vue
+
   // ...
   data () {
     return {
@@ -85,12 +92,15 @@ By default, `__checkbox` will use `id` field for that purpose as it usually uniq
 
 Run the project and try it out!
 
+![image](./images/11-3.png)
+
 If you do not have `id` in your data structure, or want to use another field that could also uniquely identify each column, you have to specify that using `track-by` prop.
 
 For example, if you want to use `item_code` field instead, you can do so like this.
 
 ```javascript
   // MyVuetable.vue
+
   // ...
   <vuetable ref="vuetable"
     //...
@@ -117,7 +127,7 @@ Add a new file to your project, let's called `CustomActions.vue`. Here's the cod
       <button class="ui basic button" @click="itemAction('view-item', rowData, rowIndex)"><i class="zoom icon"></i></button>
       <button class="ui basic button" @click="itemAction('edit-item', rowData, rowIndex)"><i class="edit icon"></i></button>
       <button class="ui basic button" @click="itemAction('delete-item', rowData, rowIndex)"><i class="delete icon"></i></button>
-    </div>  
+    </div>
   </template>
 
   <script>

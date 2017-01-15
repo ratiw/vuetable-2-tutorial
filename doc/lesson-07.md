@@ -1,19 +1,21 @@
 # 7) Adding pagination
+
 So far, we have just only display the first page of data. In this lesson, we'll add table pagination to our Vuetable.
 
 ### Pagination components
-Vuetable already have two ready-to-use pagination components, `VuetablePagination` and `VuetablePaginationDropdown`. 
+Vuetable already have two ready-to-use pagination components, [`VuetablePagination`](https://github.com/ratiw/vuetable-2/blob/master/src/components/VuetablePagination.vue) and [`VuetablePaginationDropdown`](https://github.com/ratiw/vuetable-2/blob/master/src/components/VuetablePaginationDropdown.vue).
 
-These two pagination components are only different in the appearance. Most of the functionality are the same because they both use `VuetablePaginationMixin` mixin, which provides pagination related functions. 
+These two pagination components are only different in the appearance. Most of the functionality are the same because they both use [`VuetablePaginationMixin`](https://github.com/ratiw/vuetable-2/blob/master/src/components/VuetablePaginationMixin.vue) mixin, which provides pagination related functions.
 
 That means you can also write your own pagination component with ease by just providing the template that uses available functions in the mixin.
 
-> In the [first version](https://github.com/ratiw/vue-table) of Vuetable, pagination is part of the Vuetable template, but this makes it hard to change the overall look of the Vuetable if you want to customize it.
+> In the [first version](https://github.com/ratiw/vue-table) of Vuetable, pagination is part of the Vuetable template. This makes it easy to begin with, but this makes it inflexible if you want to customize it. That's why the pagination component is not part of the Vuetable-2 by default.
 
-Now, let's put the pagination component in our MyVuetable template. 
+Now, let's put the pagination component in our MyVuetable template.
 
 ```vue
   // MyVuetable.vue
+
   <template>
     <vuetable ref="vuetable"
       api-url="http://vuetable.ratiw.net/api/users"
@@ -44,11 +46,14 @@ However, this won't work just yet because Vue would throw an error at you if you
     template syntax error Component template should contain exactly one root element.
 ```
 
+Vue now requires that your component has only one root and if it doesn't, it will throw the above error message.
+
 To fix this, you just have to wrap those components in one HTML tag like `<div></div>` like this.
 ```html
   // MyVuetable.vue
+
   <template>
-    <div>
+    <div>   // <---
       <vuetable ref="vuetable"
         api-url="http://vuetable.ratiw.net/api/users"
         :fields="fields"
@@ -63,6 +68,7 @@ But if you look at the template in `App.vue`, you should see that we have `<div 
 So, let's modify the template in `App.vue` to look like this.
 ```html
   // App.vue
+
   <template>
     <div id="app">
       <img src="./assets/logo.png">
@@ -74,6 +80,7 @@ So, let's modify the template in `App.vue` to look like this.
 And, modify the template in `MyVuetable.vue` to look like this.
 ```html
   // MyVuetable.vue
+
   <template>
     <div class="ui container">
       <vuetable ref="vuetable"
@@ -85,7 +92,9 @@ And, modify the template in `MyVuetable.vue` to look like this.
   </template>
 ```
 
-You can run the project now and see that the error is gone, but you won't see the pagination component just yet. This is because in order for it to work, we will need to bind it with Vuetable component and we'll do that in later section. Next, we will have to discuss about the pagination data structure.
+You can run the project now and see that the error is gone, but you won't see the pagination component just yet.
+
+This is because in order for it to work, we will need to **bind it** with Vuetable component and we'll do that in later section. Next, we will have to discuss about the pagination data structure.
 
 ### Pagination data structure
 
@@ -93,7 +102,7 @@ In order for the pagination component to work correctly, it needs some informati
 
 This information must be included as part of the data structure returned from the `api-url` prop and you need to tell Vuetable where it is in that data structure.
 
-The same API endpoint that we use in this tutorial already has this information. Let's have a look.
+The same [API endpoint](http://vuetable.ratiw.net/api/users) that we use in this tutorial already has this information. Let's have a look.
 ```json
 {
   "total": 200,
@@ -105,14 +114,14 @@ The same API endpoint that we use in this tutorial already has this information.
   "from": 1,
   "to": 15,
   "data": [
-    {...}, 
+    {...},
     {...}
     //...
   ]
 }
 ```
 
-The above JSON data structure is taken from [Laravel](https://laravel.com/docs/5.3/pagination#converting-results-to-json)'s pagination.
+The above JSON data structure is taken from [Laravel's pagination](https://laravel.com/docs/5.3/pagination#converting-results-to-json).
 
 The pagination information that Vuetable uses are
 - `total` -- total number of records available
@@ -124,15 +133,17 @@ The pagination information that Vuetable uses are
 - `from` -- the start record of this page
 - `to` -- the end record of this page
 
-Without those information, Vuetable's pagination component will not work. 
+Without those information, Vuetable's pagination component will not work.
 
 > If you are using the API from the service provider that has different data structure or using different variable names, you will have to use [`transform()`]() hook to transform the data structure you received to the one that Vuetable can work with.
 
 ### Pagination path
 
 If you run the project and happen to open the inspection console of the browser, you would notice a warning like this
-```shell
-vuetable: pagination-path "links.pagination" not found. It looks like the data returned from the server does not have pagination information or you may have set it incorrectly.
+```
+vuetable: pagination-path "links.pagination" not found. It looks like the data
+returned from the server does not have pagination information or you may have
+set it incorrectly.
 ```
 
 Vuetable will look for the pagination information in the returned data at the specific location and by default that location is `links.pagination`
@@ -153,12 +164,13 @@ Vuetable will look for the pagination information in the returned data at the sp
 But the data we received from the API endpoint in this tutorial, the pagination information that we need is at the root of the data structure. So, we need to tell Vuetable about this by setting the `pagination-path` prop to the root of the data structure. That is `pagination-path=""`. Now our template in `MyVuetable.vue` should look like this.
 ```html
   // MyVuetable.vue
+
   <template>
     <div class="ui container"
       <vuetable ref="vuetable"
         api-url="http://vuetable.ratiw.net/api/users"
         :fields="fields"
-        pagination-path=""
+        pagination-path=""    // <----
       ></vuetable>
       <vuetable-pagination ref="pagination"></vuetable-pagination>
     </div>
@@ -168,7 +180,7 @@ But the data we received from the API endpoint in this tutorial, the pagination 
 
 ### Binding pagination component
 
-Now, we are ready to bind VuetablePagination to Vuetable so that it receives pagination information that it can use. We do this in 2 steps:
+Now, we are ready to bind VuetablePagination to Vuetable so that it receives pagination information that it can use. We do this in 3 steps:
 
 - listen to `vuetable:pagination-data` event on Vuetable and specify the  binding handler function.
 - listen to `vuetable-pagination:change-page` event on VuetablePagination and specify the binding handler function.
@@ -186,13 +198,14 @@ We instruct Vuetable to listen to this event using `v-on` directive. In the foll
 
 ```html
   // MyVuetable.vue
+
   <template>
     <div class="ui container"
       <vuetable ref="vuetable"
         api-url="http://vuetable.ratiw.net/api/users"
         :fields="fields"
         pagination-path=""
-        @vuetable:pagination-data="onPaginationData"
+        @vuetable:pagination-data="onPaginationData"  // <----
       ></vuetable>
       <vuetable-pagination ref="pagination"></vuetable-pagination>
     </div>
@@ -200,14 +213,17 @@ We instruct Vuetable to listen to this event using `v-on` directive. In the foll
   //...
 ```
 
+`onPaginationData` is an event handler that we will create in the last step.
+
 #### # listen to `vuetable-pagination:change-page` event
 
-VuetablePagination emits only one event that is `vuetable-pagination:change-page`. This event will inform its parent component that the user has click on a pagination link and should cause the loading of the given page for display.
+VuetablePagination emits only one event that is `vuetable-pagination:change-page`. This event will inform its parent component that the user has click on a pagination link and this should cause the loading of the given page for display.
 
-> Notice the event prefix here is `vuetable-pagination`.
+> Notice the event prefix here is `vuetable-pagination:`. If you've noticed, I'm trying to make a convention here.
 
 ```html
   // MyVuetable.vue
+
   //...
   <vuetable-pagination ref="pagination"
     @vuetable-pagination:change-page="onChangePage"
@@ -221,6 +237,7 @@ VuetablePagination emits only one event that is `vuetable-pagination:change-page
 Now, let's define the handler function
 ```javascript
   // MyVuetable.vue
+
   //...
   methods: {
     //...
@@ -234,16 +251,16 @@ Now, let's define the handler function
 ```
 
 Once you save and run it, you should now see that pagination on the page like this.
-    [image]
+    ![image](images/07-1.png)
 
-> In the [first version](https://github.com/ratiw/vue-table) of Vuetable, 
-> the binding of pagination component is done automatically. But in order to make the look customizable, e.g. pagination component both at the top and bottom of Vuetable, we have to resort to manual binding. As you can see, this is quite easy though.
-
-[Source code for this lesson](https://github.com/ratiw/vuetable-2-tutorial/tree/lesson-7)
+> In the [first version](https://github.com/ratiw/vue-table) of Vuetable,
+> the binding of pagination component is done automatically. But in order to make it customizable, e.g. pagination component both at the top and bottom of Vuetable, we have to resort to manual binding. As you can see, this is quite easy though.
 
 Now, try changing this line:
+
 ```javascript
   // MyVuetable.vue
+
   //...
   import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 ```
@@ -251,8 +268,10 @@ Now, try changing this line:
 to this
 ```javascript
   // MyVuetable.vue
+
   //...
   import VuetablePagination from 'vuetable-2/src/components/VuetablePaginationDropdown'
 ```
 
-Can you guess, what would happen?
+
+[Source code for this lesson](https://github.com/ratiw/vuetable-2-tutorial/tree/lesson-7)

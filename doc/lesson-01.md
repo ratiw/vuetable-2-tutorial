@@ -1,4 +1,5 @@
 # 1) Your first Vuetable
+
 * install vuetable-2 using yarn
 
     ```shell
@@ -29,7 +30,7 @@
     ```
 
 + Modify `index.html` to include [JQuery] and [Semantic UI]
-+ 
++
     ```html
     <!DOCTYPE html>
     <html>
@@ -88,7 +89,7 @@
     $ yarn run dev
     ```
 
-    you should see something like this 
+    you should see something like this
 
     ![image](./images/01-1.PNG)
 

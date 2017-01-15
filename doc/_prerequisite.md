@@ -1,6 +1,6 @@
 # Prerequisites
 - Install the required tools
-- sample API endpoint 
+- sample API endpoint
 
 ## Install the required tools
 
@@ -47,13 +47,15 @@ Once you press Enter, vue-cli will download the [webpack template](https://githu
 
 Here is the example.
 
-  > Project name: **_vuetable-2-tutorial_**    
-  > Project description: **_Vuetable tutorial project_**    
-  > Author: **_your name_**    
-  > Vue build: **_standalone (Runtime + Compiler)_**    
-  > Use ESLint to lint your code? **_No_**    
-  > Setup unit tests with Karma + Mocha? **_No_**    
-  > Setup e2e tests with Nightwatch? **_No_**    
+  > Project name: **_vuetable-2-tutorial_**
+  > Project description: **_Vuetable tutorial project_**
+  > Author: **_your name_**
+  > Vue build: **_standalone (Runtime + Compiler)_**
+  > Use ESLint to lint your code? **_No_**
+  > Setup unit tests with Karma + Mocha? **_No_**
+  > Setup e2e tests with Nightwatch? **_No_**
+
+  ![image](./images/00-1.png)
 
 Once the installation is done, you have to `cd` into the project directory to install all the dependcies of the project.
 
@@ -69,7 +71,7 @@ Once it is finished, you can run the project like this.
 ```
 
 You should now see the project running in the web browser like this.
-  ![image](./images/00-1.PNG)
+  ![image](./images/00-2.png)
 
 The project is now running in watch mode with Hot Reload. Which means you can continue to edit the source code and once you save it, the browser will automatically be upadted to reflect the changes you've made.
 
@@ -86,7 +88,7 @@ Currently, the API endpoint is at http://vuetable.ratiw.net/api/users
 Basically, this API endpoint returns a collection of fake users and it supports the following features:
 
 - Pagination (`page`)
-    You can specify which "page" of data you're interested by using `page` in the query string. 
+    You can specify which "page" of data you're interested by using `page` in the query string.
 
         page=<page number>
 
@@ -113,6 +115,6 @@ Basically, this API endpoint returns a collection of fake users and it supports 
 
     The `<text>` is a string to be searched for in `name`, `nickname`, and `email` fields.
 
-The values for `page`, `per_page`, `sort`, and `filter` in the query string will be populated automatically by Vuetable before sending the request to the server. 
+The values for `page`, `per_page`, `sort`, and `filter` in the query string will be populated automatically by Vuetable before sending the request to the server.
 
 If you would like to use other terms or the API you're working with use different terms, you can use `query-params` prop change them accordingly and Vuetable will use those terms instead.

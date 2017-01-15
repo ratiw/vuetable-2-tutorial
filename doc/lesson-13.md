@@ -8,6 +8,7 @@ Let's begin by creating a new file to and place the following code in there. Sav
 
 ```vue
   // FilterBar.vue
+
   <template>
     <div class="filter-bar ui basic segment grid">
       <div class="ui form">
@@ -47,6 +48,7 @@ But, as usual, in order for it to work, we have to import it and put it in our m
 
 ```vue
   // MyVuetable.vue
+
   <template>
     <div class="ui container">
       <filter-bar></filter-bar>   // <----
@@ -54,7 +56,7 @@ But, as usual, in order for it to work, we have to import it and put it in our m
       //...
     </div>
   </template>
-  
+
   <script>
   //...
   import FilterBar from './FilterBar'
@@ -66,7 +68,9 @@ But, as usual, in order for it to work, we have to import it and put it in our m
 
 Now you should be able to run the project. Try entering something in the text input of `FilterBar`, and also clicking on those two buttons and see the output in the console window of the browser.
 
-Right now, the `FilterBar` does not do anything much, just logging out a message to the console to prove that it does work.
+At the moment, the `FilterBar` does not do anything much, just logging out a message to the console to prove that it does work.
+
+![image](./images/13-1.png)
 
 ## Removing PaginationInfoTop
 
@@ -93,13 +97,15 @@ In the `onPaginationData` methods, remove the following lines
 
 The top pagination should now be removed.
 
+![image](./images/13-2.png)
+
 Next, we will modify `FilterBar` so that when the user click the "Go" button or press Enter in the text input to apply the filter, we will fire an event to notify other components that the user has just set the filter.
 
 We will also do the same for "Reset" button by firing an event to notify the others that the user has decided to reset the filter.
 
-## Using centralized event hub 
+## Using centralized event hub
 
-We used to have event broadcasting/dispatching mechanism in Vue 1.x, but it has its limitation when the application grows more complex. So in Vue 2.x, the old event mechanism has been deprecated and we are encouraged to use centralized event hub or state management system via Vuex instead.
+We used to have event broadcasting/dispatching mechanism in Vue 1.x, but it has its limitation when the application grows more complex. So in Vue 2.x, the old event mechanism has been deprecated and we are encouraged to use centralized event hub or state management system like Vuex instead.
 
 For us, Vuex is a bit complex for a simple project, so we will instead use the centralized event hub. But you should be able to adapt it to Vuex as well if you wish.
 
@@ -109,6 +115,7 @@ Now, let's use it in our component. Add the following code to `MyVuetable.vue` t
 
 ```javascript
   // MyVuetable.vue
+
   //...
   import Vue from 'vue'
   import VueEvents from 'vue-events'
@@ -126,6 +133,7 @@ Let's modify our `FilterBar` component to fire the `filter-set` and `filter-rese
 
 ```javascript
   // FilterBar.vue
+
   //...
   methods: {
     doFilter () {
@@ -142,6 +150,7 @@ Then, let's register the event listeners in `MyVuetable.vue` to handle those fil
 
 ```javascript
   // MyVuetable.vue
+
   //...
   methods: {
     //...
@@ -162,7 +171,7 @@ Run the project and try it. It will demonstrate the use of `vue-events`, but our
 
 First, please note that **Vuetable does not filter the data by itself**. The filter functionality is done on the server side via the API endpoint. So, our job is to let Vuetable send the filter query string back to the server.
 
-Normally, Vuetable will send the following query to the API endpoint 
+Normally, Vuetable will send the following query to the API endpoint
 
 - number of records per page (`per_page`)
 - requested page number (`page`)
@@ -172,12 +181,13 @@ But you can send more parameters to the API by using [`append-params`](#) prop.
 
 The `append-params` is an object containing a list of key-value pair. Anything you put in here will be converted to key-value query string and appends to the default query string.
 
-In our case, the API endpoint we use provide the filter functionality via the `filter` keyword. If you want only the records that contain the word "**dan**", the `filter=dan` must be added to the query string that send to the API.
+In our case, the sample API endpoint we use provides the filter functionality via the `filter` keyword. If you want only the records that contain the word "**dan**", the `filter=dan` must be added to the query string that send to the API.
 
 So, we will bind `append-params` prop to a new variable called `moreParams` in our MyVuetable component like this to later use it in our event listeners.
 
 ```vue
   // MyVuetable.vue
+
   <template>
     //...
     <vuetable ref="vuetable"
@@ -186,6 +196,7 @@ So, we will bind `append-params` prop to a new variable called `moreParams` in o
     ></vuetable>
     //...
   </template>
+
   <script>
     //...
     data () {
@@ -203,6 +214,8 @@ Then, we will modify our event listener to use `moreParams` to add or remove the
 
 ```javascript
   // MyVuetable.vue
+
+  //...
   events: {
     'filter-set' (filterText) {
       this.moreParams = {
@@ -229,5 +242,13 @@ Note that we call `vuetable.refresh()` inside `Vue.nextTick`. This is necessary 
 > ```
 
 Run the project and try it. The filter functionality should now work.
+
+![image](./images/13-3.png)
+
+# That's wrap!
+
+And that's it for our tutorial! We hope you've learn enough of Vuetable, so that you can successfully use it in your project.
+
+If you like Vuetable and think it does save you some time and works, please consider supporting me using this [PayPal](https://www.paypal.me/ratiw) link. I usually use it to buy ebooks or online courses to expand my knowledge. Thanks!
 
 [Source code for this lesson](https://github.com/ratiw/vuetable-2-tutorial/tree/lesson-13)

@@ -10,6 +10,7 @@ In our tutorial project, we would like to make all fields sortable, so we have t
 
 ```javascript
   // MyVuetable.vue
+
   //...
   data () {
     return {
@@ -17,7 +18,7 @@ In our tutorial project, we would like to make all fields sortable, so we have t
         {
           name: 'name',
           sortField: 'name'
-        }, 
+        },
         {
           name: 'email',
           sortField: 'email'
@@ -64,6 +65,7 @@ Sometimes, the `name` of the field is just an alias of a computed column in the 
 
 ```javascript
   // MyVuetable.vue
+
   // ...
   data () {
     return {
@@ -88,6 +90,7 @@ The `age` field is actually computed its value from `birthdate` field, so we can
 
 ```javascript
   // MyVuetable.vue
+
   // ...
   data () {
     return {
@@ -140,7 +143,7 @@ Again, if you API does not support multi-column sorting, the displaying results 
 
 Ascending/descending icon are just CSS classes wrap inside `<i>` tag and you can change it to any icon you like if your CSS framework support it.
 
-To change it, set the `ascending-icon` and `descending-icon` in the `css` prop appropriately.
+Here is an example on changing it to use Bootstrap 3 CSS, set the `ascending-icon` and `descending-icon` in the `css` prop appropriately.
 
 ```vue
   <template>
@@ -162,7 +165,7 @@ To change it, set the `ascending-icon` and `descending-icon` in the `css` prop a
 ```
 
 
-## Setting default sort order 
+## Setting default sort order
 
 You can use `sort-order` prop to specify the initial sort order. For example, you would like the data to be initially sorted by `email` field, you can do so by:
 
