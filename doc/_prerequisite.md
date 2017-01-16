@@ -55,7 +55,7 @@ Here is the example.
   > Setup unit tests with Karma + Mocha? **_No_**
   > Setup e2e tests with Nightwatch? **_No_**
 
-  ![image](./images/00-1.png)
+  ![image](./images/00-1.PNG)
 
 Once the installation is done, you have to `cd` into the project directory to install all the dependcies of the project.
 
