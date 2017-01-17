@@ -15,7 +15,7 @@ Let's see the code.
       //...
     ></vuetable>
     <div class="vuetable-pagination ui basic segment grid">
-      <vuetable-pagination-info ref="paginationInfo"
+      <vuetable-pagination-info ref="paginationInfo"      // <----
       ></vuetable-pagination-info>
 
       <vuetable-pagination ref="pagination"
@@ -33,7 +33,7 @@ Let's see the code.
     components: {
       Vuetable,
       VuetablePagination,
-      VuetablePaginationInfo
+      VuetablePaginationInfo    // <----
     },
     data () {
       //...
@@ -42,7 +42,7 @@ Let's see the code.
       //...
       onPaginationData (paginationData) {
         this.$refs.pagination.setPaginationData(paginationData)
-        this.$refs.paginationInfo.setPaginationData(paginationData)
+        this.$refs.paginationInfo.setPaginationData(paginationData)   // <----
       },
       //...
     }
