@@ -2,7 +2,9 @@
 
 > This is a Vuetable-2 tutorial project. The tutorial content is [here](./doc/README.md)
 
-> If you're using Bootstrap 3 CSS, clone the code from [vuetable-2-tutorial-bootstrap](https://github.com/ratiw/vuetable-2-tutorial-bootstrap) instead.
+If you're using Bootstrap 3 CSS, clone the code from [vuetable-2-tutorial-bootstrap](https://github.com/ratiw/vuetable-2-tutorial-bootstrap) instead.
+
+If you're using Bulma CSS, clone the code from [vuetable-2-tutorial-bulma](https://github.com/ratiw/vuetable-2-tutorial-bulma).
 
 ## Setup
 
