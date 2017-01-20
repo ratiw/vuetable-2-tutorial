@@ -2,6 +2,11 @@
 
 The tutorial has been designed to be follow along, so you could start from the beginning through the end. At the end of each lesson, there will be a link to the whole code on GitHub.
 
+> If you're using Bootstrap 3 CSS, clone the code from [vuetable-2-tutorial-bootstrap](https://github.com/ratiw/vuetable-2-tutorial-bootstrap) instead.
+> 
+> If you're using Bulma CSS, clone the code from [vuetable-2-tutorial-bulma](https://github.com/ratiw/vuetable-2-tutorial-bulma).
+
+
 ##### Prerequisite
 - [Install the required tools](./_prerequisite.md#install-the-required-tools)
 - [Create a tutorial project with Vue-CLI](./_prerequisite.md#create-a-tutorial-project-with-vue-cli)
