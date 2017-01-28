@@ -112,7 +112,7 @@ For example, if you want to use `item_code` field instead, you can do so like th
 
 For more detail on how to access the selected row, see [here](#).
 
-### __component:<componentName>
+### __component:&lt;name&gt;
 
 The `__component` special field allows you to create a component to handle the row data the way you want.
 
@@ -207,4 +207,87 @@ Run the project, and you should now see the new component in the last column of 
 
 ![image](./images/11-4.png)
 
+### __slot:&lt;name&gt;  `v1.2.0`
+
+The `__slot` special field allows you to use Vue's **scoped slot** inside Vuetable.
+
+> The feature uses Vue.js's [Scoped Slots](https://vuejs.org/v2/guide/components.html#Scoped-Slots), which is available in Vue 2.1.0 onward. So, please check and make sure you also use at least the specified version of Vue.js.
+
+In the previous section, we've implemented the `custom-actions` component to be used inside Vuetable. We will now see how can we use `__slot` to implement the same thing.
+
+First, we will define the `__slot` special field like so,
+
+```javascript
+  // MyVuetable.vue
+
+  // ...
+  data () {
+    return {
+      fields: [
+        //...
+        {
+          name: '__slot:actions',   // <----
+          title: 'Actions',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
+        }
+      ]
+    }
+  }
+```
+
+Then, modified `MyVuetable.vue` to add our scoped slot inside `<vuetable></vuetable>` tag.
+
+```vue
+  // MyVuetable.vue
+
+  //...
+  <vuetable ref="vuetable"
+    api-url="http://vuetable.ratiw.net/api/users"
+    :fields="fields"
+    pagination-path=""
+    :per-page="20"
+    :sort-order="sortOrder"
+    detail-row-component="my-detail-row"
+    :appendParams="moreParams"
+    @vuetable:pagination-data="onPaginationData"
+    @vuetable:cell-clicked="onCellClicked"
+  >
+    <template slot="actions" scope="props">   // <----
+      <div class="custom-actions">
+        <button class="ui basic button"
+          @click="onAction('view-item', props.rowData, props.rowIndex)">
+          <i class="zoom icon"></i>
+        </button>
+        <button class="ui basic button"
+          @click="onAction('edit-item', props.rowData, props.rowIndex)">
+          <i class="edit icon"></i>
+        </button>
+        <button class="ui basic button"
+          @click="onAction('delete-item', props.rowData, props.rowIndex)">
+          <i class="delete icon"></i>
+        </button>
+      </div>
+    </template>
+  </vuetable>
+  //...
+```
+
+Now, we have to define `onAction` methos inside our `MyVuetable` to handle those buttons event.
+
+```javascript
+  // MyVuetable.vue
+
+  //...
+  methods: {
+    //...
+    onAction (action, data, index) {
+      console.log('slot) action: ' + action, data.name, index)
+    }
+  }
+```
+
+And that's it. To acheiving the same functionality, you can use either a **component** or a **slot**.
+
 [Source code for this lesson](https://github.com/ratiw/vuetable-2-tutorial/tree/lesson-11)
+
