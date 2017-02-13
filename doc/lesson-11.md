@@ -2,12 +2,13 @@
 
 Special fields are predefined field for specific purpose and their names are always started with double underscore characters `__`.
 
-There are 4 special fields currently defined in Vuetable.
+There are 5 special fields currently defined in Vuetable.
 
 - `__sequence`
 - `__handle`
 - `__checkbox`
 - `__component`
+- `__slot`
 
 To use any of these special fields, you just define another field in the `fields` prop and use the special field as the name of the field.
 
@@ -213,7 +214,7 @@ The `__slot` special field allows you to use Vue's **scoped slot** inside Vuetab
 
 > The feature uses Vue.js's [Scoped Slots](https://vuejs.org/v2/guide/components.html#Scoped-Slots), which is available in Vue 2.1.0 onward. So, please check and make sure you also use at least the specified version of Vue.js.
 
-In the previous section, we've implemented the `custom-actions` component to be used inside Vuetable. We will now see how can we use `__slot` to implement the same thing.
+In the previous section, we've implemented the `custom-actions` component to be used inside Vuetable. We will now see how we can use `__slot` to implement the same thing.
 
 First, we will define the `__slot` special field like so,
 
@@ -236,7 +237,7 @@ First, we will define the `__slot` special field like so,
   }
 ```
 
-Then, modified `MyVuetable.vue` to add our scoped slot inside `<vuetable></vuetable>` tag.
+Then, modify `MyVuetable.vue` to add our scoped slot inside the `<vuetable></vuetable>` tag.
 
 ```vue
   // MyVuetable.vue
@@ -273,7 +274,7 @@ Then, modified `MyVuetable.vue` to add our scoped slot inside `<vuetable></vueta
   //...
 ```
 
-Now, we have to define `onAction` methos inside our `MyVuetable` to handle those buttons event.
+Now, we have to define `onAction` methods inside our `MyVuetable` to handle those button events.
 
 ```javascript
   // MyVuetable.vue
@@ -287,7 +288,7 @@ Now, we have to define `onAction` methos inside our `MyVuetable` to handle those
   }
 ```
 
-And that's it. To acheiving the same functionality, you can use either a **component** or a **slot**.
+And that's it. To achieve the same functionality, you can use either a **component** or a **slot**.
 
 [Source code for this lesson](https://github.com/ratiw/vuetable-2-tutorial/tree/lesson-11)
 
