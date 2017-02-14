@@ -225,7 +225,6 @@ Then, we will modify our event listener to use `moreParams` to add or remove the
     },
     'filter-reset' () {
       this.moreParams = {}
-      this.$refs.vuetable.refresh()
       Vue.nextTick( () => this.$refs.vuetable.refresh())
     }
   }
