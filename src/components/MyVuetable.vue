@@ -144,20 +144,21 @@ export default {
     onCellClicked (data, field, event) {
       console.log('cellClicked: ', field.name)
       this.$refs.vuetable.toggleDetailRow(data.id)
+    },
+    onFilterSet (filterText) {
+        this.moreParams = {
+            'filter': filterText.trim()
+        }
+        Vue.nextTick( () => this.$refs.vuetable.refresh())
+    },
+    onFilterReset () {
+        this.moreParams = {}
+        Vue.nextTick( () => this.$refs.vuetable.refresh())
     }
   },
-  events: {
-    'filter-set' (filterText) {
-      this.moreParams = {
-        'filter': filterText
-      }
-      Vue.nextTick( () => this.$refs.vuetable.refresh())
-    },
-    'filter-reset' () {
-      this.moreParams = {}
-      this.$refs.vuetable.refresh()
-      Vue.nextTick( () => this.$refs.vuetable.refresh())
-    }
+  mounted() {
+      this.$events.$on('filter-set', eventData => this.onFilterSet(eventData))
+      this.$events.$on('filter-reset', e => this.onFilterReset())
   }
 }
 </script>
