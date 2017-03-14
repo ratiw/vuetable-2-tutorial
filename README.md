@@ -14,6 +14,8 @@ Clone the project and install it using `npm` or `yarn`.
 # install dependencies
 npm install
 
+# you might need to do "npm update" due to some dependencies update
+
 # each lesson contains the code that is tagged according to the lesson itself.
 # to select the code for lesson 1
 git checkout lesson-1
@@ -22,5 +24,6 @@ git checkout lesson-1
 npm run dev
 
 ```
+
 
 Find any mistake? Open an issue and I'll have a look. Cheers!
