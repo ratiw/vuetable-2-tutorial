@@ -146,20 +146,22 @@ Let's modify our `FilterBar` component to fire the `filter-set` and `filter-rese
   }
 ```
 
-Then, let's register the event listeners in `MyVuetable.vue` to handle those filter events. With the help of `vue-events`, we can add the `events` option after the `methods` option like so.
+Then, let's register the event listeners in `MyVuetable.vue` to handle those filter events. With the help of `vue-events`.
 
 ```javascript
   // MyVuetable.vue
 
   //...
+  mounted() {
+    this.$events.$on('filter-set', eventData => this.onFilterSet(eventData))
+    this.$events.$on('filter-reset', e => this.onFilterReset())
+  },
   methods: {
     //...
-  },
-  events: {
-    'filter-set' (filterText) {
+    onFilterSet (filterText) {
       console.log('filter-set', filterText)
     },
-    'filter-reset' () {
+    onFilterReset () {
       console.log('filter-reset')
     }
   }
@@ -216,16 +218,17 @@ Then, we will modify our event listener to use `moreParams` to add or remove the
   // MyVuetable.vue
 
   //...
-  events: {
-    'filter-set' (filterText) {
-      this.moreParams = {
-        'filter': filterText
-      }
-      Vue.nextTick( () => this.$refs.vuetable.refresh())
+  methods: {
+    //...
+    onFilterSet (filterText) {
+        this.moreParams = {
+            'filter': filterText
+        }
+        Vue.nextTick( () => this.$refs.vuetable.refresh())
     },
-    'filter-reset' () {
-      this.moreParams = {}
-      Vue.nextTick( () => this.$refs.vuetable.refresh())
+    onFilterReset () {
+        this.moreParams = {}
+        Vue.nextTick( () => this.$refs.vuetable.refresh())
     }
   }
 ```
