@@ -1,18 +1,27 @@
 <template>
-  <vuetable ref="vuetable"
-    api-url="https://vuetable.ratiw.net/api/users"
-    :fields="fields"
-  ></vuetable>
+  <div class="ui container">
+    <vuetable ref="vuetable"
+      api-url="https://vuetable.ratiw.net/api/users"
+      :fields="fields"
+      pagination-path=""
+      @vuetable:pagination-data="onPaginationData"
+    ></vuetable>
+    <vuetable-pagination ref="pagination"
+      @vuetable-pagination:change-page="onChangePage"
+    ></vuetable-pagination>
+  </div>
 </template>
 
 <script>
-import Vuetable from 'vuetable-2/src/components/Vuetable'
 import accounting from 'accounting'
 import moment from 'moment'
+import Vuetable from 'vuetable-2/src/components/Vuetable'
+import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 
 export default {
   components: {
-    Vuetable
+    Vuetable,
+    VuetablePagination
   },
   data () {
     return {
@@ -59,6 +68,12 @@ export default {
       return (value == null)
         ? ''
         : moment(value, 'YYYY-MM-DD').format(fmt)
+    },
+    onPaginationData (paginationData) {
+      this.$refs.pagination.setPaginationData(paginationData)
+    },
+    onChangePage (page) {
+      this.$refs.vuetable.changePage(page)
     }
   }
 }
