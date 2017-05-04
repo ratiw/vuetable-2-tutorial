@@ -9,8 +9,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "vue": "^2.1.0",
-    "vuetable-2": "^1.0.1"
+    "vue": "^2.3.0",
+    "vuetable-2": "^1.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
