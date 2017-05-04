@@ -1,7 +1,7 @@
 <template>
   <vuetable ref="vuetable"
     api-url="https://vuetable.ratiw.net/api/users"
-    :fields="['name', 'email', 'birthdate']"
+    :fields="fields"
   ></vuetable>
 </template>
 
@@ -11,6 +11,14 @@ import Vuetable from 'vuetable-2/src/components/Vuetable'
 export default {
   components: {
     Vuetable
+  },
+  data () {
+    return {
+      fields: [
+        'name', 'email', 'birthdate',
+        'address.line1', 'address.line2', 'address.zipcode'
+      ]
+    }
   }
 }
 </script>
