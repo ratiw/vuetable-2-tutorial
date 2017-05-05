@@ -16,7 +16,24 @@
       :multi-sort="true"
       :sort-order="sortOrder"
       @vuetable:pagination-data="onPaginationData"
-    ></vuetable>
+    >
+      <template slot="actions" scope="props">
+        <div class="custom-actions">
+          <button class="ui basic button"
+            @click="onAction('view-item', props.rowData, props.rowIndex)">
+            <i class="zoom icon"></i>
+          </button>
+          <button class="ui basic button"
+            @click="onAction('edit-item', props.rowData, props.rowIndex)">
+            <i class="edit icon"></i>
+          </button>
+          <button class="ui basic button"
+            @click="onAction('delete-item', props.rowData, props.rowIndex)">
+            <i class="delete icon"></i>
+          </button>
+        </div>
+      </template>
+    </vuetable>
     <div class="vuetable-pagination ui basic segment grid">
       <vuetable-pagination-info ref="paginationInfo"
       ></vuetable-pagination-info>
@@ -30,9 +47,13 @@
 <script>
 import accounting from 'accounting'
 import moment from 'moment'
+import Vue from 'vue'
 import Vuetable from 'vuetable-2/src/components/Vuetable'
 import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
+import CustomActions from './CustomActions'
+
+Vue.component('custom-actions', CustomActions)
 
 export default {
   components: {
@@ -43,6 +64,22 @@ export default {
   data () {
     return {
       fields: [
+        {
+          name: '__handle',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
+        },
+        {
+          name: '__sequence',
+          title: '#',
+          titleClass: 'center aligned',
+          dataClass: 'right aligned'
+        },
+        {
+          name: '__checkbox',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
+        },
         {
           name: 'name',
           sortField: 'name',
@@ -76,6 +113,18 @@ export default {
           titleClass: 'center aligned',
           dataClass: 'right aligned',
           callback: 'formatNumber'
+        },
+        // {
+        //   name: '__component:custom-actions',
+        //   title: 'Actions',
+        //   titleClass: 'center aligned',
+        //   dataClass: 'center aligned',
+        // },
+        {
+          name: '__slot:actions',
+          title: 'Slot Actions',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned',
         }
       ],
       sortOrder: [
@@ -113,6 +162,9 @@ export default {
     },
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
+    },
+    onAction (action, data, index) {
+      console.log('slot action: ' + action, data.name, index)
     }
   }
 }
