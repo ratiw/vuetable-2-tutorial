@@ -176,13 +176,11 @@ export default {
       this.$refs.vuetable.toggleDetailRow(data.id)
     },
     onFilterSet (filterText) {
-      this.moreParams = {
-        'filter': filterText
-      }
+      this.moreParams.filter = filterText
       Vue.nextTick( () => this.$refs.vuetable.refresh() )
     },
     onFilterReset () {
-      this.moreParams = {}
+      delete this.moreParams.filter
       Vue.nextTick( () => this.$refs.vuetable.refresh() )
     }
   }
