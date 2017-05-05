@@ -4,7 +4,7 @@ If your API endpoint support sorting, Vuetable can automatically interact with t
 
 ## Mark field as sortable
 
-By specifying `sortField` option on the field defintion, you tell Vuetable that that particular field is sortable. Vuetable will render the column header for that field to be clickable for sorting and the ascending or descending sort icon will appear after the column name in the table header.
+By specifying `sortField` option on the field definition, you tell Vuetable that that particular field is sortable. Vuetable will render the column header for that field to be clickable for sorting and the ascending or descending sort icon will appear after the column name in the table header.
 
 In our tutorial project, we would like to make all fields sortable, so we have the add `sortField` option for every field and we have to turn the `name` and `email` field from simple string to field definition object as well.
 
