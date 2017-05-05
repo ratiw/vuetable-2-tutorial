@@ -1,5 +1,5 @@
 <template>
-	<div class="filter-bar ui basic segment grid">
+  <div class="filter-bar ui basic segment grid">
     <div class="ui form">
       <div class="inline field">
         <label>Search for:</label>

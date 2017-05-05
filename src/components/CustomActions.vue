@@ -8,7 +8,7 @@
 
 <script>
 export default {
-	props: {
+  props: {
     rowData: {
       type: Object,
       required: true
@@ -26,10 +26,10 @@ export default {
 </script>
 
 <style>
-.custom-actions button.ui.button {
-  padding: 8px 8px;
-}
-.custom-actions button.ui.button > i.icon {
-  margin: auto !important;
-}
+  .custom-actions button.ui.button {
+    padding: 8px 8px;
+  }
+  .custom-actions button.ui.button > i.icon {
+    margin: auto !important;
+  }
 </style>
