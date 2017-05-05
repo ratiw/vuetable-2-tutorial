@@ -1,7 +1,8 @@
 ### Tutorial Content
 
 > __Note__   
-> This tutorial is based on v1.3 of Vuetable-2, but the newest version at the moment is v1.6 which contains some breaking changes (see [release note](https://github.com/ratiw/vuetable-2/releases/tag/v1.6.0)). I'll try to update the tutorial to the latest version of Vuetable-2 as soon as I can.
+> This tutorial has been updated to use v1.6 of Vuetable-2.  
+If you're using earlier version of Vuetable, please consider upgrading as it contains bug fixes and additional features. Please also check out the  [release note](https://github.com/ratiw/vuetable-2/releases) as it may contain some breaking changes that you need to be aware.
 
 The tutorial has been designed to be follow along, so you could start from the beginning through the end. At the end of each lesson, there will be a link to the whole code on GitHub.
 
