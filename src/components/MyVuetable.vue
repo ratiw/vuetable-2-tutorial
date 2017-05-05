@@ -15,6 +15,8 @@
       :per-page="20"
       :multi-sort="true"
       :sort-order="sortOrder"
+      detail-row-component="my-detail-row"
+      @vuetable:cell-clicked="onCellClicked"
       @vuetable:pagination-data="onPaginationData"
     >
       <template slot="actions" scope="props">
@@ -52,8 +54,10 @@ import Vuetable from 'vuetable-2/src/components/Vuetable'
 import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
 import CustomActions from './CustomActions'
+import DetailRow from './DetailRow'
 
 Vue.component('custom-actions', CustomActions)
+Vue.component('my-detail-row', DetailRow)
 
 export default {
   components: {
@@ -165,6 +169,10 @@ export default {
     },
     onAction (action, data, index) {
       console.log('slot action: ' + action, data.name, index)
+    },
+    onCellClicked (data, field, event) {
+      console.log('cellClicked: ', field.name)
+      this.$refs.vuetable.toggleDetailRow(data.id)
     }
   }
 }
