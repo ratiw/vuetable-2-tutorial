@@ -221,13 +221,11 @@ Then, we will modify our event listener to use `moreParams` to add or remove the
   methods: {
     //...
     onFilterSet (filterText) {
-        this.moreParams = {
-            'filter': filterText
-        }
+        this.moreParams.filter = filterText
         Vue.nextTick( () => this.$refs.vuetable.refresh())
     },
     onFilterReset () {
-        this.moreParams = {}
+        delete this.moreParams.filter
         Vue.nextTick( () => this.$refs.vuetable.refresh())
     }
   }
