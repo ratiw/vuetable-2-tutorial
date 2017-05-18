@@ -43,6 +43,11 @@ The tutorial has been designed to be follow along, so you could start from the b
     - The Problem
     - The Solution: `render` function
     - Converting `<template>` to `render` function
+17. Converting to Bootstrap CSS
+    - The `css` property
+    - Table Styling
+    - Pagination Styling
+    - Using the `icon-render` property
 
 ##### Contributions
 
