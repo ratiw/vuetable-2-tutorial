@@ -1,13 +1,31 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+
     <my-vuetable
       api-url="https://vuetable.ratiw.net/api/users"
       :fields="fields"
       :sort-order="sortOrder"
       :append-params="moreParams"
       detail-row-component="my-detail-row"
-    ></my-vuetable>
+    >
+      <template slot="actions" scope="props">
+        <div class="custom-actions">
+          <button class="ui basic button"
+            @click="onAction('view-item', props.rowData, props.rowIndex)">
+            <i class="zoom icon"></i>
+          </button>
+          <button class="ui basic button"
+            @click="onAction('edit-item', props.rowData, props.rowIndex)">
+            <i class="edit icon"></i>
+          </button>
+          <button class="ui basic button"
+            @click="onAction('delete-item', props.rowData, props.rowIndex)">
+            <i class="delete icon"></i>
+          </button>
+        </div>
+      </template>
+    </my-vuetable>
   </div>
 </template>
 
@@ -35,7 +53,12 @@ export default {
       ],
       moreParams: {}
     }
-  }  
+  },  
+  methods: {
+    onAction (action, data, index) {
+      console.log('slot action: ' + action, data.name, index)
+    },    
+  }
 }
 </script>
 
