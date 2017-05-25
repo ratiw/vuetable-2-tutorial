@@ -78,7 +78,11 @@ export default {
             perPage: 10,
             multiSort: true,
             sortOrder: this.sortOrder,
+<<<<<<< HEAD
             appendParams: this.appendParams,
+=======
+            appendParams: this.moreParams,
+>>>>>>> fa03d8f4aaf2879d5bed8324348f798850a02285
             detailRowComponent: this.detailRowComponent,
           },
           on: {
