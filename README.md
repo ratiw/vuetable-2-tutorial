@@ -1,6 +1,6 @@
 # vuetable-2-tutorial
 
-> This is a Vuetable-2 tutorial project. The tutorial content is [here](./doc/README.md)
+> This is a Vuetable-2 tutorial project. The tutorial content is [here](https://github.com/ratiw/vuetable-2-tutorial/wiki)
 
 If you're using Bootstrap 3 CSS, clone the code from [vuetable-2-tutorial-bootstrap](https://github.com/ratiw/vuetable-2-tutorial-bootstrap) instead.
 
