@@ -8,6 +8,7 @@ import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
 import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
 import CustomActions from './CustomActions'
 import FilterBar from './FilterBar'
+import CssConfig from './VuetableCssConfig.js'
 
 Vue.use(VueEvents)
 Vue.component('custom-actions', CustomActions)
@@ -45,7 +46,9 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      css: CssConfig,
+    }
   },
   mounted () {
     this.$events.$on('filter-set', eventData => this.onFilterSet(eventData))
@@ -80,6 +83,7 @@ export default {
             sortOrder: this.sortOrder,
             appendParams: this.appendParams,
             detailRowComponent: this.detailRowComponent,
+            css: this.css.table,
           },
           on: {
             'vuetable:cell-clicked': this.onCellClicked,
@@ -92,11 +96,12 @@ export default {
     renderPagination(h) {
       return h(
         'div',
-        { class: {'vuetable-pagination': true, 'ui': true, 'basic': true, 'segment': true, 'grid': true} },
+        { class: {'vuetable-pagination': true} },
         [
-          h('vuetable-pagination-info', { ref: 'paginationInfo' }),
+          h('vuetable-pagination-info', { ref: 'paginationInfo', props: { css: this.css.paginationInfo } }),
           h('vuetable-pagination', {
             ref: 'pagination',
+            props: { css: this.css.pagination },
             on: {
               'vuetable-pagination:change-page': this.onChangePage
             }
@@ -110,8 +115,8 @@ export default {
     },
     genderLabel (value) {
       return value === 'M'
-        ? '<span class="ui teal label"><i class="large man icon"></i>Male</span>'
-        : '<span class="ui pink label"><i class="large woman icon"></i>Female</span>'
+        ? '<span class="label label-success"><span class="glyphicon glyphicon-tree-deciduous"></span> Male</span>'
+        : '<span class="label label-danger"><span class="glyphicon glyphicon-heart-empty"></span> Female</span>'
     },
     formatNumber (value) {
       return accounting.formatNumber(value, 2)

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img id="logo" src="./assets/logo.png">
 
     <my-vuetable
       api-url="https://vuetable.ratiw.net/api/users"
@@ -11,17 +11,17 @@
     >
       <template slot="actions" scope="props">
         <div class="custom-actions">
-          <button class="ui basic button"
+          <button class="btn btn-default btn-sm"
             @click="onAction('view-item', props.rowData, props.rowIndex)">
-            <i class="zoom icon"></i>
+            <span class="glyphicon glyphicon-zoom-in"></span>
           </button>
-          <button class="ui basic button"
+          <button class="btn btn-default btn-sm"
             @click="onAction('edit-item', props.rowData, props.rowIndex)">
-            <i class="edit icon"></i>
+            <i class="glyphicon glyphicon-pencil"></i>
           </button>
-          <button class="ui basic button"
+          <button class="btn btn-default btn-sm"
             @click="onAction('delete-item', props.rowData, props.rowIndex)">
-            <i class="delete icon"></i>
+            <i class="glyphicon glyphicon-trash"></i>
           </button>
         </div>
       </template>
@@ -67,8 +67,18 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+img#logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.filter-bar {
+  padding: 8px;
+}
+.pagination {
+  margin-top: 0px;
 }
 </style>
