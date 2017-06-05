@@ -4,7 +4,7 @@ export default {
     loadingClass: "loading",
     ascendingIcon: "glyphicon glyphicon-chevron-up",
     descendingIcon: "glyphicon glyphicon-chevron-down",
-    sortHandleIcon: "glyphicon glyphicon-menu-hamburger",
+    handleIcon: "glyphicon glyphicon-menu-hamburger",
   },
   paginationInfo: {
     infoClass: 'pull-left'
