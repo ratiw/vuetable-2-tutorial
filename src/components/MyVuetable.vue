@@ -58,7 +58,7 @@ export default {
     return h(
       'div', 
       {
-        class: { ui: true, container: true }
+        class: { container: true }
       },
       [
         h('filter-bar'),
