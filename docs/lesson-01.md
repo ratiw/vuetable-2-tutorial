@@ -106,7 +106,14 @@ You've now successfully created your first component using Vuetable.
 
 ## Play with it
 
-<vuep template="#lesson01"></vuep>
+<vue-tabs :start-index="1">
+  <v-tab title="Code">
+    <vuep template="#lesson01"></vuep>
+  </v-tab>
+  <v-tab title="Result">
+    <div id="output"></div>
+  </v-tab>
+</vue-tabs>
 
 <script v-pre type="text/x-template" id="lesson01">
 <template>
@@ -118,7 +125,9 @@ You've now successfully created your first component using Vuetable.
 
 <script>
   Vue.use(Vuetable);
-  export default {}
+  export default {
+    el: '#output'
+  }
 </script>
 
 </script>

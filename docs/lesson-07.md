@@ -277,7 +277,15 @@ to this
 
 ## Play with it
 
-<vuep template="#lesson07"></vuep>
+<vue-tabs :start-index="1">
+  <v-tab title="Code">
+    <vuep template="#lesson07"></vuep>
+  </v-tab>
+  <v-tab title="Result">
+    <div id="output"></div>
+  </v-tab>
+</vue-tabs>
+
 
 <script v-pre type="text/x-template" id="lesson07">
 <template>
@@ -298,6 +306,7 @@ to this
 <script>
   Vue.use(Vuetable);
   export default {
+  el: '#output',
   data () {
       return {
         fields: [
