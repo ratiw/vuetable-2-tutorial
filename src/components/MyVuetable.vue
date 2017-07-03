@@ -1,3 +1,32 @@
+<template>
+  <div class="ui container">
+    <filter-bar></filter-bar>
+    <vuetable ref="vuetable"
+      :api-url="apiUrl"
+      :fields="fields"
+      pagination-path=""
+      :per-page="10"
+      :multi-sort="true"
+      :sort-order="sortOrder"
+      :append-params="appendParams"
+      detail-row-component="detailRowComponent"
+      @vuetable:cell-clicked="onCellClicked"
+      @vuetable:pagination-data="onPaginationData"
+      v-for="slotName in  Object.keys($scopedSlots)" :key="slotName"
+    >
+         <template :slot="slotName" scope="props">
+            <slot :name="slotName" :row-data="props.rowData" :row-index="props.rowIndex" :row-field="props.rowField"></slot>
+         </template>
+    </vuetable>
+    <div class="vuetable-pagination ui basic segment grid">
+      <vuetable-pagination-info ref="paginationInfo"
+      ></vuetable-pagination-info>
+      <vuetable-pagination ref="pagination"
+        @vuetable-pagination:change-page="onChangePage"
+      ></vuetable-pagination>
+    </div>
+  </div>
+</template>
 <script>
 import accounting from 'accounting'
 import moment from 'moment'
@@ -51,60 +80,7 @@ export default {
     this.$events.$on('filter-set', eventData => this.onFilterSet(eventData))
     this.$events.$on('filter-reset', e => this.onFilterReset())
   },
-  render(h) {
-    return h(
-      'div', 
-      {
-        class: { ui: true, container: true }
-      },
-      [
-        h('filter-bar'),
-        this.renderVuetable(h),
-        this.renderPagination(h)
-      ]
-    )
-  },
-  methods: {
-    // render related functions
-    renderVuetable(h) {
-      return h(
-        'vuetable', 
-        { 
-          ref: 'vuetable',
-          props: {
-            apiUrl: this.apiUrl,
-            fields: this.fields,
-            paginationPath: "",
-            perPage: 10,
-            multiSort: true,
-            sortOrder: this.sortOrder,
-            appendParams: this.appendParams,
-            detailRowComponent: this.detailRowComponent,
-          },
-          on: {
-            'vuetable:cell-clicked': this.onCellClicked,
-            'vuetable:pagination-data': this.onPaginationData,
-          },
-          scopedSlots: this.$vnode.data.scopedSlots
-        }
-      )
-    },
-    renderPagination(h) {
-      return h(
-        'div',
-        { class: {'vuetable-pagination': true, 'ui': true, 'basic': true, 'segment': true, 'grid': true} },
-        [
-          h('vuetable-pagination-info', { ref: 'paginationInfo' }),
-          h('vuetable-pagination', {
-            ref: 'pagination',
-            on: {
-              'vuetable-pagination:change-page': this.onChangePage
-            }
-          })
-        ]
-      )
-    },
-    // ------------------
+  methods: {  
     allcap (value) {
       return value.toUpperCase()
     },
