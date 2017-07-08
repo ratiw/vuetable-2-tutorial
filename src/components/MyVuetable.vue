@@ -12,11 +12,10 @@
       detail-row-component="detailRowComponent"
       @vuetable:cell-clicked="onCellClicked"
       @vuetable:pagination-data="onPaginationData"
-      v-for="slotName in  Object.keys($scopedSlots)" :key="slotName"
     >
-         <template :slot="slotName" scope="props">
-            <slot :name="slotName" :row-data="props.rowData" :row-index="props.rowIndex" :row-field="props.rowField"></slot>
-         </template>
+           <template :slot="slotName" scope="props" v-for="slotName in  $scopedSlots?Object.keys($scopedSlots):null" >
+                <slot :name="slotName" :row-data="props.rowData" :row-index="props.rowIndex" :row-field="props.rowField"></slot>
+            </template>
     </vuetable>
     <div class="vuetable-pagination ui basic segment grid">
       <vuetable-pagination-info ref="paginationInfo"
