@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Vuetable from 'vuetable-2/src/components/Vuetable'
+import Vuetable from 'vuetable-2'
 
 export default {
   components: {
